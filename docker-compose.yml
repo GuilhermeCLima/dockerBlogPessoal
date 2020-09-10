@@ -13,7 +13,7 @@ services:
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: blog_pessoal
     ports:
-      - "3308:3306"
+      - "3309:3306"
     networks:
       - generation-network
   blogpessoal-api:
@@ -35,6 +35,16 @@ services:
       - db
     networks:
       - generation-network
+
+  blogPessoal-ui:
+    image: nginx
+    volumes:
+      - ./blogpessoal/dist/blogpessoal:/usr/share/nginx/html/
+    ports:
+      - "4200:80"
+    networks:
+      - generation-network
+
 networks:
     generation-network:
         driver: bridge
